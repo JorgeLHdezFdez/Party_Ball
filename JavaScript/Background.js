@@ -7,7 +7,6 @@ class Background {
     this.img.src = "Images/Party_Ball_Background_Final.jpg";
     this.w = w;
     this.h = h;
-
     this.x = 0;
     this.y = 0;
   }
@@ -18,12 +17,6 @@ class Background {
 
   draw() {
     this.ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
-    this.ctx.drawImage(this.img, this.x + this.w, this.y, this.w, this.h);
+    //this.ctx.drawImage(this.img, this.x + this.w, this.y, this.w, this.h);
   }
 }
-
-//   move() {
-//     this.x -= this.dx;
-
-//     if (this.x < -this.w) this.x = 0;
-//   }
