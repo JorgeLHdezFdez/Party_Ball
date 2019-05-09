@@ -3,8 +3,6 @@
 const Game = {
   canvas: undefined,
   ctx: undefined,
-  winW: undefined,
-  winH: undefined,
   fps: 60,
   keys: {
     left: 37,
@@ -26,8 +24,6 @@ const Game = {
   setDimensions: function() {
     this.canvas.setAttribute("width", window.innerWidth);
     this.canvas.setAttribute("height", window.innerHeight);
-    this.winH = window.innerHeight;
-    this.winW = window.innerWidth;
   },
   //"setHandlers" es la propiedad que permite que cúando el tamaño de la ventana se mueva
   //el CANVAS se ajustará del tal forma que siga ocupando todo el espacio de la ventana.
@@ -44,6 +40,9 @@ const Game = {
     this.interval = setInterval(() => {
       this.clean();
       this.drawAll();
+      //collision functions instead of inside left and right
+      this.ball.insideLeftBasket();
+      this.ball.insideRightBasket();
     }, 1000 / 60);
   },
   //"reset" resetea todos los elementos del juego para empezar en un estado limpio
@@ -64,13 +63,12 @@ const Game = {
     this.ball.draw();
   },
   setEventListeners: function() {
-    document.onkeyup = e => {
-      console.log(e.keyCode, this.keys.left);
+    document.onkeydown = e => {
+      //console.log(e.keyCode, this.keys.left);
       if (e.keyCode === this.keys.left) this.ball.moveLeft();
       if (e.keyCode === this.keys.right) this.ball.moveRight();
       if (e.keyCode === this.keys.up) this.ball.moveUp();
       if (e.keyCode === this.keys.down) this.ball.moveDown();
-      console.log("Hola");
     };
   }
 };
